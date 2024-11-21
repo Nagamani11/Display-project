@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Title</title>
+    {% include 'cdnlines.html' %}
+  </head>
+  <style media="screen">
+    input[name]{
+      margin-top:-10px;
+    }
+  </style>
+  <body>
+    <div class="Container-fluid">
+      <div class="row">
+        <div class="col-md-3">
+          <h4 class="text-center">Please Enter Your Details Here!!!</h4>
+          <form method="POST">
+            {% csrf_token %}
+            <label>First Name: </label>
+            <input type="text" class="form-control" name="fname">
+            <label>Last Name: </label>
+            <input type="text" class="form-control" name="lname">
+            <label>Email Id: </label>
+            <input type="email"  class="form-control" name="email">
+            <label>Mobile Number: </label>
+            <input type="number" class="form-control" name="mobile">
+            <label>Qualification: </label>
+            <input type="text" class="form-control" name="qualification">
+            <label>Percentage: </label>
+            <input type="number" class="form-control" name="percentage">
+            <label>Location: </label>
+            <input type="text" class="form-control" name="location">
+            <div class="text-center mt-3">
+              <input type="Submit"  value="Submit" class="btn btn-success">
+              <input type="Reset"  value="Cancel" class="btn btn-danger">
+            </div>
+          </form>
+        </div>
+            <div class="col-md-9">
+              {% if nth %}
+              <h1 class="text-center">Your Data Available Here!!!</h1>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>first_name</th>
+                    <th>last_name</th>
+                    <th>email</th>
+                    <th>mobile</th>
+                    <th>qualification</th>
+                    <th>percentage</th>
+                    <th>location</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in nth %}
+                  <tr>
+                    <td>{{i.first_name}}</td>
+                    <td>{{i.last_name}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.mobile}}</td>
+                    <td>{{i.qualification}}</td>
+                    <td>{{i.percentage}}</td>
+                    <td>{{i.location}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              {% else %}
+              <h1 class="text-center">No Data Available Here!!!</h1>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+  </body>
+</html>
